@@ -1,0 +1,13 @@
+{
+  "//": "Single source of truth for the WebSocket endpoint. Local now; in cloud only `wsUrl`/`host`/`port` change. The panel reads host+port; the controller reads port.",
+  "host": "127.0.0.1",
+  "port": 8787,
+  "wsPath": "/bridge",
+  "httpPath": "/",
+  "commandTimeoutMs": 30000,
+  "reconnect": {
+    "initialDelayMs": 500,
+    "maxDelayMs": 10000,
+    "factor": 1.8
+  }
+}

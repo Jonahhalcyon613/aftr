@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  .debug — enables Chrome DevTools debugging for the CEP panel.
+  Open chrome://inspect or http://localhost:39729 to debug.
+  Port must not conflict with other CEP panels.
+-->
+<ExtensionList>
+  <Extension Id="com.ae-bridge.panel.main">
+    <HostList>
+      <Host Name="AEFT" Port="39729"/>
+    </HostList>
+  </Extension>
+</ExtensionList>

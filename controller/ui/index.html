@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aftr Controller</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">▷</span>
+        <span>After Effects Control Bridge</span>
+      </div>
+      <div id="statusPill" class="pill pill--off">
+        <span class="dot"></span>
+        <span id="statusText">connecting…</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel commands">
+        <h2>Commands</h2>
+        <p class="hint">
+          Each control sends a JSON envelope to the panel inside AE and shows the
+          result. Disabled controls require an AE panel connection.
+        </p>
+        <div id="commandList"></div>
+      </section>
+
+      <section class="panel io">
+        <div class="io-head">
+          <h2>Live log</h2>
+          <button id="clearLog" class="btn btn--ghost">clear</button>
+        </div>
+        <div id="log" class="log" aria-live="polite"></div>
+
+        <h2>Last response</h2>
+        <pre id="response" class="response">—</pre>
+      </section>
+    </main>
+
+    <script src="ui.js"></script>
+  </body>
+</html>

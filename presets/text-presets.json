@@ -1,0 +1,54 @@
+{
+  "_doc": "Combinatorial text presets for the aftr: 4 styles x 8 eases. Call via the bridge command `applyTextStyle` with { compId, style, ease, text, ... }. wordReveal is approved/deterministic; the other three styles are interim and pending refinement.",
+  "call": {
+    "command": "applyTextStyle",
+    "required": ["compId", "style", "ease (or bezier[4])", "text"],
+    "example": { "command": "applyTextStyle", "params": { "compId": 1, "style": "wordReveal", "ease": "easeOutExpo", "text": "Word Reveal" } },
+    "multiline": "Put \\n in text for multiple lines. Lines are positioned MANUALLY by measured glyph metrics (AE leading is bypassed because variable fonts override it with a fixed, non-scaling offset). Spacing is deterministic and scales with font size."
+  },
+  "lineHeight": {
+    "rule": "spacing = max over adjacent line pairs of (upper line descent + lower line ascent) + 0.10 * cap height, all measured from the actual glyphs at the actual size",
+    "why": "the lower line's ascenders must clear the upper line; using only cap height makes ascenders touch. Content-aware: descenders on an upper line auto-expand the gap.",
+    "override": "pass lineHeight (px) to set spacing explicitly",
+    "cascade": "multi-line animates as one continuous per-character sweep (each line timed by its share of total characters), so separate line layers still look seamless"
+  },
+  "eases": {
+    "easeInOutCubic": [0.65, 0, 0.35, 1],
+    "easeOutQuart": [0.25, 1, 0.5, 1],
+    "easeInOutQuart": [0.76, 0, 0.24, 1],
+    "easeOutQuint": [0.22, 1, 0.36, 1],
+    "easeInOutQuint": [0.83, 0, 0.17, 1],
+    "easeOutExpo": [0.16, 1, 0.3, 1],
+    "easeInOutExpo": [0.87, 0, 0.13, 1],
+    "easeInOutCirc": [0.85, 0, 0.15, 1]
+  },
+  "styles": {
+    "wordReveal": {
+      "status": "ready",
+      "builder": "applyWordReveal",
+      "defaults": { "font": "ExposureVAR-Exposure", "fontSize": 130, "fillColor": [1, 1, 1], "rise": 80, "revealFrames": 18, "stagger": 9, "motionBlur": true },
+      "notes": "Approved on style 1. Deterministic: measures glyph widths, centers each line on centerX and the block on centerY, animates each word as its own layer; words cascade with overlap."
+    },
+    "charScale": {
+      "status": "ready",
+      "builder": "applyTextPreset",
+      "selfContained": true,
+      "defaults": { "font": "ExposureVAR-Exposure", "fontSize": 130, "fillColor": [1, 1, 1], "tracking": -60, "props": { "position": 50, "scale": 80 }, "sel": { "easeLow": 0 }, "animFrom": -15, "stretch": 2, "motionBlur": true },
+      "notes": "Approved on style 2. Single centered text layer, character-based scale+rise+fade. Self-contained: pass `text` and it builds a centered layer. animFrom -15 fixes the first-letter edge artifact; easeLow 0 keeps the entry snappy."
+    },
+    "bunchRotate": {
+      "status": "ready",
+      "builder": "applyTextPreset",
+      "selfContained": true,
+      "defaults": { "font": "ExposureVAR-Exposure", "fontSize": 130, "fillColor": [1, 1, 1], "tracking": -60, "animFrom": -15, "stretch": 2, "motionBlur": true },
+      "notes": "Approved on style 3. Single centered text layer; characters bunched tightly then scale + rotate + fade apart into place. Self-contained: pass `text`. animFrom -15 fixes the first-letter edge."
+    },
+    "blurFade": {
+      "status": "ready",
+      "builder": "applyTextPreset",
+      "selfContained": true,
+      "defaults": { "font": "ExposureVAR-Exposure", "fontSize": 130, "fillColor": [1, 1, 1], "tracking": -60, "animFrom": -15, "stretch": 2, "motionBlur": true },
+      "notes": "Approved on style 4. Single combined animator (opacity + scale + rotation + blur) swept across characters: letters cascade with overlap and each letter's fade + un-blur fire together. animFrom -15 fixes the first-letter edge."
+    }
+  }
+}

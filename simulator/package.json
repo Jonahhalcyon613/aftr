@@ -1,0 +1,16 @@
+{
+  "name": "@ae-bridge/simulator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Headless AE simulator: a WS client that runs the REAL bundled JSX against a mock AE DOM, so the architecture (M0/M3/M4/M5) validates without After Effects.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "dependencies": {
+    "@ae-bridge/shared": "*",
+    "ws": "8.21.0"
+  }
+}

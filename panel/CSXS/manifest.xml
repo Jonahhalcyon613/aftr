@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  manifest.xml : CEP extension manifest for aftr.
+
+  Key values:
+  * ExtensionBundleId: com.ae-bridge.panel (unique across all CEP extensions)
+  * Host: AEFT (After Effects). Version range covers AE 2024 through 2026+.
+  * CEFCommandLine enables Node (see the Parameter elements below) so the panel
+    can spawn aerender via child_process, plus a shared JS/Node scope.
+  * ExtensionManifest Version is the manifest SCHEMA version (11.0), not the CEP
+    version. RequiredRuntime CSXS is kept low (9.0) so the panel loads on any
+    CEP 9+ host.
+
+  Note: XML comments may not contain a double hyphen, so command-line flags are
+  described in prose here and declared literally in the Parameter elements.
+
+  Unsigned panels require PlayerDebugMode = 1 in the registry / defaults:
+    Windows: HKCU\Software\Adobe\CSXS.12  PlayerDebugMode = "1"
+    macOS:   defaults write com.adobe.CSXS.12 PlayerDebugMode 1
+-->
+<ExtensionManifest Version="11.0" ExtensionBundleId="com.ae-bridge.panel"
+  ExtensionBundleVersion="0.1.0" ExtensionBundleName="aftr"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <ExtensionList>
+    <Extension Id="com.ae-bridge.panel.main" Version="0.1.0" />
+  </ExtensionList>
+
+  <ExecutionEnvironment>
+    <HostList>
+      <Host Name="AEFT" Version="[24.0,99.9]" />
+    </HostList>
+    <LocaleList>
+      <Locale Code="All" />
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="9.0" />
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+
+  <DispatchInfoList>
+    <Extension Id="com.ae-bridge.panel.main">
+      <DispatchInfo>
+        <Resources>
+          <MainPath>./index.html</MainPath>
+          <CEFCommandLine>
+            <Parameter>--enable-nodejs</Parameter>
+            <Parameter>--mixed-context</Parameter>
+          </CEFCommandLine>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>Panel</Type>
+          <Menu>aftr</Menu>
+          <Geometry>
+            <Size>
+              <Height>300</Height>
+              <Width>400</Width>
+            </Size>
+            <MinSize>
+              <Height>200</Height>
+              <Width>280</Width>
+            </MinSize>
+          </Geometry>
+        </UI>
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
+</ExtensionManifest>

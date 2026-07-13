@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aftr Panel</title>
+    <style>
+      :root {
+        --bg: #232328;
+        --text: #d4d4d8;
+        --ok: #4caf72;
+        --err: #e5616a;
+        --dim: #71717a;
+        --accent: #6aa6ff;
+        --mono: "SFMono-Regular", "Consolas", monospace;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 12px;
+        background: var(--bg);
+        color: var(--text);
+        padding: 12px;
+        overflow-y: auto;
+      }
+      h1 { font-size: 14px; margin-bottom: 8px; letter-spacing: 0.03em; }
+
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        background: #1a1a1f;
+        border: 1px solid #333;
+        margin-bottom: 10px;
+      }
+      .dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--err);
+        flex-shrink: 0;
+      }
+      .dot.on { background: var(--ok); box-shadow: 0 0 6px var(--ok); }
+      .dot.wait { background: #e0a64b; }
+
+      .log {
+        background: #1a1a1f;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 6px 8px;
+        font-family: var(--mono);
+        font-size: 11px;
+        line-height: 1.5;
+        max-height: 180px;
+        overflow-y: auto;
+        word-break: break-word;
+        white-space: pre-wrap;
+      }
+      .log .ok { color: var(--ok); }
+      .log .err { color: var(--err); }
+      .log .dim { color: var(--dim); }
+    </style>
+  </head>
+  <body>
+    <h1>aftr</h1>
+    <div class="status">
+      <span id="dot" class="dot"></span>
+      <span id="statusText">initializing…</span>
+    </div>
+    <div id="log" class="log"></div>
+
+    <!-- CSInterface.js — provided by Adobe CEP runtime -->
+    <script src="src/csInterface.js"></script>
+    <!-- Bridge: evalScript wrapper -->
+    <script src="src/bridge.js"></script>
+    <!-- Render: non-blocking aerender handler -->
+    <script src="src/render.js"></script>
+    <!-- Keystroke: OS-level keyboard injection -->
+    <script src="src/keystroke.js"></script>
+    <!-- Discovery: panel-side listPlugins (Node fs) -->
+    <script src="src/discovery.js"></script>
+    <!-- Main: WS client + command routing -->
+    <script src="src/main.js"></script>
+  </body>
+</html>

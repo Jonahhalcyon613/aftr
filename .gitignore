@@ -1,0 +1,31 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# Generated JSX bundle (built from jsx/host.jsx + jsx/commands/*.jsx)
+panel/jsx/bundle.jsx
+
+# Signing artifacts: self-signed dev cert (secret) + packaged extension
+dist/
+*.p12
+*.zxp
+
+# Root dev scratch: keep the cdp helpers + hot.mjs; drop one-off probes + binaries
+/tools/*.jsx
+/tools/agtest.mjs
+/tools/test_*.js
+/tools/*.exe
+/tools/ZXPSignCmd*
+
+# Render outputs / test artifacts produced during runs
+out/
+assets/
+rendersave/
+*.aep
+*.aep.lock
+
+# Local environment overrides
+.env
+controller/.env
+panel/config.local.js

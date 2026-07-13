@@ -1,0 +1,9 @@
+{
+  "//": "The ONE value that changes when moving local -> cloud: point wsUrl at the controller. The panel loads this at boot; if absent it falls back to ws://127.0.0.1:8787/bridge.",
+  "wsUrl": "ws://127.0.0.1:8787/bridge",
+  "reconnect": {
+    "initialDelayMs": 500,
+    "maxDelayMs": 10000,
+    "factor": 1.8
+  }
+}

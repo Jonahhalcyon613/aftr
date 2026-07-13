@@ -1,0 +1,32 @@
+{
+  "name": "aftr",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Puppeteer for After Effects: controller, CEP panel, and JSX command layer, with a headless AE simulator for AE-free validation.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "workspaces": [
+    "shared",
+    "controller",
+    "simulator"
+  ],
+  "scripts": {
+    "build:jsx": "node panel/build/bundle-jsx.js",
+    "dev": "npm run build:jsx && node controller/src/server.js",
+    "controller": "node controller/src/server.js",
+    "mcp": "node controller/src/mcp.js",
+    "sim": "node simulator/src/index.js",
+    "sim:dev": "npm run build:jsx && node simulator/src/index.js",
+    "test": "npm run build:jsx && node --test \"controller/test/**/*.test.js\" \"shared/test/**/*.test.js\" \"simulator/test/**/*.test.js\"",
+    "e2e": "npm run build:jsx && node controller/test/e2e/run-e2e.js",
+    "deploy:panel": "node panel/build/sign-and-deploy.mjs",
+    "orchestrate": "node controller/src/orchestrator/demo.js",
+    "orchestrate:fire": "node controller/src/orchestrator/demo-fire.js",
+    "showreel": "node controller/src/orchestrator/demo-showcase.js"
+  },
+  "devDependencies": {
+    "zxp-sign-cmd": "^2.0.0"
+  }
+}
