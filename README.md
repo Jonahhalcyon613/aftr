@@ -719,3 +719,7 @@ Avoid JSX that opens a dialog (or `alert()`); it blocks `evalScript`.
 ## License
 
 MIT. Use it, fork it, ship it.
+
+---
+
+Watch the full demo: https://www.youtube.com/watch?v=QkjTwlqPhNc
